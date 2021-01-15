@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#30444E</color>
+    <color name="colorPrimaryDark">#192428</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorWhite">#E6E7F2</color>
+    <color name="colorGreen">#3ED598</color>
+    <color name="colorRad">#FF565E</color>
+    <color name="colorYellow">#FFC542</color>
+
+    <color name="colorGreenTran">#803ED598</color>
+    <color name="colorRadTran">#80FF565E</color>
+    <color name="colorYellowTran">#80FFC542</color>
+</resources>

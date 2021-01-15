@@ -1,0 +1,107 @@
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
+}
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+
+    defaultConfig {
+        applicationId "com.tmb.currency"
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionCode versionCodeMajor * 10000 + versionCodeMinor * 100 + versionCodePatch
+        versionName versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            testCoverageEnabled true
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+}
+
+dependencies {
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    //Local Libs
+    implementation project(':domain')
+    implementation project(':data-remote')
+
+    //Jetpack
+    implementation appDependencies.appCompat
+    implementation appDependencies.androidxKtx
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.supportV4
+    implementation appDependencies.fragmentKtx
+    implementation appDependencies.lifecycleExtensions
+
+    // Koin
+    implementation appDependencies.koinAndroid
+    implementation appDependencies.koinAndroidViewModel
+
+    //Stetho
+    implementation appDependencies.stetho
+
+    //Animations
+    implementation appDependencies.recyclerviewAnimations
+
+    //About Libraries
+    implementation appDependencies.aboutLibraryCore
+    implementation appDependencies.aboutLibraryUi
+
+    // kiel
+    implementation appDependencies.kiel
+
+    //Material
+    implementation appDependencies.material
+
+    //Test Libs
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.androidxJunit
+    /*testImplementation testDependencies.robolectric
+    testImplementation testDependencies.espressoCore
+    testImplementation testDependencies.runner
+    testImplementation testDependencies.rules
+    testImplementation testDependencies.googleTruth
+    testImplementation testDependencies.archComponentTest
+    testImplementation testDependencies.coroutinesTest*/
+    testImplementation testDependencies.koinTest
+    androidTestImplementation testDependencies.espressoCore
+    /*androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.rules
+    androidTestImplementation testDependencies.androidxJunit
+    androidTestImplementation testDependencies.androidxCoreTest
+    androidTestImplementation testDependencies.mockWebServer
+    androidTestImplementation testDependencies.espressoContrib
+    androidTestImplementation testDependencies.espressoIntents*/
+    androidTestImplementation testDependencies.koinTest
+    //implementation testDependencies.espressoIdlingResource
+}
