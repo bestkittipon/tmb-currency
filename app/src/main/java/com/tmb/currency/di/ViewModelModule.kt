@@ -8,7 +8,7 @@ import org.koin.dsl.module
 val viewModelsModule = module {
     viewModel {
         SampleViewModel(
-            sampleUseCase = get(named("search"))
+            currencyUseCase = get(named("key"))
         )
     }
 }

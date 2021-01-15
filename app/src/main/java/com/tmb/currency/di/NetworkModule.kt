@@ -1,6 +1,6 @@
 package com.tmb.currency.di
 
-import com.tmb.data_remote.api.SampleApiService
+import com.tmb.data_remote.api.CurrencyApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -13,7 +13,7 @@ val networkModule = module {
 
     single { provideSampleApiService(retrofit = get()) }
 
-    single { provideRetrofit(okHttpClient = get(), url = "https://swapi.dev/api/") }
+    single { provideRetrofit(okHttpClient = get(), url = "https://currencyapi.net/api/v1/") }
 
     single { provideOkHttpClient() }
 }
@@ -37,5 +37,5 @@ internal fun provideRetrofit(okHttpClient: OkHttpClient, url: String): Retrofit 
         .build()
 }
 
-internal fun provideSampleApiService(retrofit: Retrofit): SampleApiService =
-    retrofit.create(SampleApiService::class.java)
+internal fun provideSampleApiService(retrofit: Retrofit): CurrencyApiService =
+    retrofit.create(CurrencyApiService::class.java)

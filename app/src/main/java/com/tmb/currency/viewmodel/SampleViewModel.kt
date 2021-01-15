@@ -1,9 +1,8 @@
 package com.tmb.currency.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.tmb.domain.usecases.SampleBaseUseCase
+import com.tmb.domain.usecases.CurrencyBaseUseCase
 import com.tmb.currency.commons.ExceptionHandler
-import com.tmb.currency.mappers.toPresentation
 import com.tmb.currency.model.CharacterPresentation
 import com.tmb.currency.model.states.Error
 import com.tmb.currency.model.states.SampleViewState
@@ -13,7 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 
 internal class SampleViewModel(
-    private val sampleUseCase: SampleBaseUseCase
+    private val currencyUseCase: CurrencyBaseUseCase
 ) : BaseViewModel() {
 
     private var searchJob: Job? = null
@@ -44,9 +43,9 @@ internal class SampleViewModel(
         searchJob = launchCoroutine {
             onSearchLoading()
             delay(500)
-            sampleUseCase(characterName).collect { results ->
-                val characters = results.map { character -> character.toPresentation() }
-                onSearchComplete(characters)
+            currencyUseCase("1mvT6y5RGXQVH03JVPqA0Br1s2zX6fGGeIeS").collect { results ->
+                //val characters = results.map { character -> character.toPresentation() }
+                //onSearchComplete(characters)
             }
         }
     }

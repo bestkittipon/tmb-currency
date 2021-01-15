@@ -1,9 +1,8 @@
 package com.tmb.data_remote.meppers
 
-import com.tmb.data_remote.models.CharacterResponse
-import com.tmb.domain.model.Character
+import com.tmb.data_remote.models.ConvertCurrencyResponse
+import com.tmb.domain.model.Conversion
 
-
-internal fun CharacterResponse.toDomain(): Character {
-    return Character(this.name, this.birthYear, this.height, this.url)
+internal fun ConvertCurrencyResponse.toDomain(): Conversion {
+    return Conversion(this.conversion.amount, this.conversion.from, this.conversion.to, this.conversion.result)
 }

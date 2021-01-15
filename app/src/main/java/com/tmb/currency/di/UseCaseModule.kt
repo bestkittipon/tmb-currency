@@ -1,18 +1,18 @@
 package com.tmb.currency.di
 
-import com.tmb.domain.repository.ISampleRepository
-import com.tmb.domain.usecases.SampleBaseUseCase
-import com.tmb.domain.usecases.SampleUseCase
+import com.tmb.domain.repository.ICurrencyRepository
+import com.tmb.domain.usecases.CurrencyBaseUseCase
+import com.tmb.domain.usecases.CurrencyUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
 val useCasesModule = module {
 
-    single(named("search")) { provideSampleUseCase(get()) }
+    single(named("key")) { provideSampleUseCase(get()) }
 
 }
 
-fun provideSampleUseCase(sampleRepository: ISampleRepository): SampleBaseUseCase {
-    return SampleUseCase(sampleRepository)
+fun provideSampleUseCase(currencyRepository: ICurrencyRepository): CurrencyBaseUseCase {
+    return CurrencyUseCase(currencyRepository)
 }
