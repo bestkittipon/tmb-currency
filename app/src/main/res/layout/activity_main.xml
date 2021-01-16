@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
+        <import type="android.view.View" />
+        
+        <variable
+            name="viewModel"
+            type="com.tmb.currency.viewmodel.MainViewModel" />
+    </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -70,121 +74,20 @@
                 app:layout_constraintTop_toBottomOf="@id/txt_say_hello"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/txt_title_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Favorite"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                android:textSize="24sp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@id/txt_desc"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <include
-                android:id="@+id/content_favorite"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                layout="@layout/item_big_content"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_favorite"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:background="@drawable/ic_logo"
-                android:backgroundTint="@color/colorYellow"
-                android:layout_marginStart="16dp"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_favorite"
-                app:layout_constraintStart_toEndOf="@id/content_favorite"/>
-
-            <TextView
-                android:id="@+id/txt_title_recent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recent"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/content_favorite"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <LinearLayout
-                android:id="@+id/content_container_recent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_recent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <include
-                    android:id="@+id/content_recent1"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    layout="@layout/item_medium_content"/>
-
-                <include
-                    android:id="@+id/content_recent2"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="16dp"
-                    layout="@layout/item_medium_content_2"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txt_title_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Category"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/content_container_recent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <LinearLayout
-                android:id="@+id/content_container_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_category"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <include
-                    android:id="@+id/content_category_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    layout="@layout/item_small_content" />
-
-                <include
-                    android:id="@+id/content_category_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
-                    layout="@layout/item_small_content_2" />
-
-                <include
-                    android:id="@+id/content_category_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
-                    layout="@layout/item_small_content_3" />
-
-
-            </LinearLayout>
-
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:setAdapter="@{viewModel.adapter}"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_medium_content"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 
 </layout>

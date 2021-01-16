@@ -7,10 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.tmb.currency.base.DataBindingActivity
 import com.tmb.currency.databinding.ActivityMainBinding
-import com.tmb.currency.viewmodel.SampleViewModel
+import com.tmb.currency.viewmodel.MainViewModel
 
-
-internal class MainActivity : DataBindingActivity<ActivityMainBinding, SampleViewModel>(SampleViewModel::class) {
+internal class MainActivity : DataBindingActivity<ActivityMainBinding, MainViewModel>(MainViewModel::class) {
 
     override fun getLayoutResId() = R.layout.activity_main
 
@@ -23,16 +22,17 @@ internal class MainActivity : DataBindingActivity<ActivityMainBinding, SampleVie
     }
 
     override fun initialView() {
-        viewModel.executeCharacterSearch("")
+        binding.viewModel = viewModel
+        viewModel.getCurrency()
     }
 
     override fun observeViewModel() {
-        viewModel.searchViewState.observe(this, Observer { state ->
-            state.searchResults?.let { searchResults ->
-                if (searchResults.isEmpty()) {
+        viewModel.currencyResult.observe(this, Observer { cuurency ->
+            cuurency?.let {
+                //if (searchResults.isEmpty()) {
                     //handleNoSearchResults()
-                    return@let
-                }
+                //    return@let
+                //}
                 //handleSearchResults(searchResults)
             }
         })
