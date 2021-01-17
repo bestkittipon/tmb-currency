@@ -18,8 +18,9 @@
         <activity android:name="com.tmb.currency.base.BaseActivity" />
 
         <activity
-            android:name="com.tmb.currency.SplashScreenActivity"
-            android:theme="@style/SplashTheme">
+            android:name="com.tmb.currency.ui.SplashScreenActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,11 +28,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.tmb.currency.MainActivity" />
+        <activity android:name="com.tmb.currency.ui.MainActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name="com.tmb.currency.PlayerActivity"
-            android:screenOrientation="landscape"
-            tools:ignore="LockedOrientationActivity" />
+        <activity android:name="com.tmb.currency.ui.ConvertCurrencyActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

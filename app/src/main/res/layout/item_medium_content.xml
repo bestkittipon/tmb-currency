@@ -8,10 +8,6 @@
             type="com.tmb.domain.model.CurrencyInfo" />
 
         <variable
-            name="position"
-            type="java.lang.Integer" />
-
-        <variable
             name="viewModel"
             type="com.tmb.currency.viewmodel.MainViewModel" />
     </data>
@@ -21,6 +17,7 @@
         android:layout_height="200dp"
         android:paddingTop="8dp"
         android:layout_margin="4dp"
+        android:onClick="@{() -> viewModel.onSelectCurrency(obj)}"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@drawable/layout_corner"
         android:backgroundTint="@color/colorRad">

@@ -2,9 +2,7 @@ package com.tmb.data_remote.repository
 
 import com.tmb.data_remote.api.CurrencyApiService
 import com.tmb.data_remote.meppers.toDomain
-import com.tmb.domain.model.Conversion
-import com.tmb.domain.model.Currency
-import com.tmb.domain.model.CurrencyInfo
+import com.tmb.domain.model.*
 import com.tmb.domain.repository.ICurrencyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,11 +19,13 @@ class CurrencyRepository(
         emit(currencyResult)
     }
 
-    override suspend fun getRatesCurrency(key: String, currencyKey: String): Flow<Map<String, Double>>  = flow {
+    override suspend fun getRatesCurrency(key: String, currencyKey: String): Flow<CurrencyRates>  = flow {
         val currencyRatesResponse = apiService.getCurrencyRates(key, currencyKey)
-        val rates = mutableMapOf<String, Double>()
-        rates.putAll(currencyRatesResponse.rates)
-        emit(rates)
+        val currencyRatesResult = currencyRatesResponse.toDomain()
+        currencyRatesResult.rates.map {
+            currencyRatesResult.ratesInfo.add(CurrencyRatesInfo(it.key, it.value))
+        }
+        emit(currencyRatesResult)
     }
 
     override suspend fun convertCurrency(

@@ -44,7 +44,6 @@ class CurrencyAdapter(layoutId: Int, viewModel: MainViewModel): BaseAdapter<Main
 class CurrencyViewHolder(private val viewBinding: ItemMediumContentBinding): BaseViewHolder<ItemMediumContentBinding, CurrencyInfo>(viewBinding) {
     override fun bindView(data: CurrencyInfo, viewModel: ViewModel, index: Int) {
         viewBinding.setVariable(BR.obj, data)
-        viewBinding.setVariable(BR.position, index)
         viewBinding.setVariable(BR.viewModel, viewModel)
         viewBinding.executePendingBindings()
 

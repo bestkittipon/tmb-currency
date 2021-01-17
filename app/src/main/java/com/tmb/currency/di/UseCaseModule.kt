@@ -13,6 +13,8 @@ val useCasesModule = module {
 
     single(named("get_currency")) { provideCurrencyUseCase(get()) }
 
+    single(named("get_rate_currency")) { provideCurrencyRatesUseCase(get()) }
+
 }
 
 fun provideCurrencyUseCase(currencyRepository: ICurrencyRepository): CurrencyBaseUseCase {

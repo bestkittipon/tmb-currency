@@ -1,17 +1,17 @@
 package com.tmb.currency.mappers
 
-//import com.tmb.domain.model.Character
-import com.tmb.currency.commons.convertToInches
-import com.tmb.currency.model.CharacterPresentation
+import com.tmb.currency.model.CurrencyInfoPresentation
+import com.tmb.currency.model.CurrencyPresentation
+import com.tmb.domain.model.Currency
+import com.tmb.domain.model.CurrencyInfo
 
+internal fun CurrencyInfo.toPresentation(): CurrencyInfoPresentation {
+    return CurrencyInfoPresentation(this.code, this.name)
+}
 
-/*
-internal fun Character.toPresentation(): CharacterPresentation {
-    return CharacterPresentation(
-        name,
-        birthYear,
-        height,
-        convertToInches(height),
-        url
+internal fun Currency.toPresentation(): CurrencyPresentation {
+    return CurrencyPresentation(
+        this.currencies,
+        this.info.map { it.toPresentation() }
     )
-}*/
+}
