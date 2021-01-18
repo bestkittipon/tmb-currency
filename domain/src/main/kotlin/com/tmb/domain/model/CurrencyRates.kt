@@ -19,5 +19,3 @@ data class CurrencyRatesInfo(
 
     fun getTitle(baseCurrencyCode: String) = "1 $baseCurrencyCode = $value $code"
 }
-
-fun Double.round(decimals: Int): Double = "%.${decimals}f".format(this).toDouble()

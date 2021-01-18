@@ -118,7 +118,8 @@
             android:layout_height="80dp"
             android:layout_marginTop="4dp"
             android:padding="8dp"
-            android:background="@drawable/layout_corner_border">
+            android:background="@drawable/layout_corner_border"
+            android:onClick="@{obj::onSelectRatesClicked}">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_logo_to_currency"
@@ -194,6 +195,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/layout_corner_border"
             android:hint="0.00"
+            android:text="@={viewModel.convertAmount}"
             android:paddingStart="8dp"
             android:paddingEnd="16dp"
             android:textSize="24sp"
@@ -219,7 +221,8 @@
                 android:layout_marginEnd="4dp"
                 android:background="@drawable/layout_corner"
                 android:backgroundTint="@color/colorBlue"
-                android:text="Convert"/>
+                android:text="Convert"
+                android:onClick="@{viewModel.onClickConvert}"/>
 
             <Button
                 android:layout_width="0dp"
@@ -228,7 +231,8 @@
                 android:layout_marginStart="4dp"
                 android:background="@drawable/layout_corner"
                 android:backgroundTint="@color/colorYellow"
-                android:text="Clear"/>
+                android:text="Clear"
+                android:onClick="@{viewModel.onClickClear}"/>
 
         </LinearLayout>
 
@@ -240,7 +244,8 @@
             android:text="Amount to convert"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="@{viewModel.convertResult != `` ? View.VISIBLE : View.GONE}"/>
 
         <TextView
             android:id="@+id/txt_result_convert"
@@ -254,7 +259,8 @@
             android:textSize="24sp"
             android:gravity="center"
             android:textColor="@color/colorPrimaryDark"
-            android:text="30.08 THB"
+            android:text="@{viewModel.convertResult}"
+            android:visibility="@{viewModel.convertResult != `` ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/txt_desc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

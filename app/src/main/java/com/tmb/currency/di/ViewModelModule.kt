@@ -1,6 +1,7 @@
 package com.tmb.currency.di
 
 import com.tmb.currency.viewmodel.ConvertCurrencyViewModel
+import com.tmb.currency.viewmodel.CurrencyRatesDialogViewModel
 import com.tmb.currency.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -17,5 +18,9 @@ val viewModelsModule = module {
         ConvertCurrencyViewModel(
             currencyRatesUseCase = get(named("get_rate_currency"))
         )
+    }
+
+    viewModel {
+        CurrencyRatesDialogViewModel()
     }
 }
