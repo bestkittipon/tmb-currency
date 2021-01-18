@@ -20,7 +20,7 @@ internal fun CurrencyResponse.toDomain(): Currency {
 }
 
 internal fun CurrencyRatesResponse.toDomain(): CurrencyRates {
-    return CurrencyRates(this.updated, this.base, this.rates).also { currencyRates ->
+    return CurrencyRates(this.timestamp, this.source, this.quotes).also { currencyRates ->
         currencyRates.valid = this.valid
         currencyRates.error?.code = this.error?.code
         currencyRates.error?.message = this.error?.message

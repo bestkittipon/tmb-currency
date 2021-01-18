@@ -41,7 +41,7 @@ class MainViewModel(
         //EspressoIdlingResource.increment()
         searchJob = launchCoroutine {
             onResultLoading()
-            currencyUseCase("hOwgpdhjjp5U3qW9PHPv9N3edlzizkLPorev").collect { results ->
+            currencyUseCase("22b335212e7c832f7aa8d843bf836094").collect { results ->
                 if (results.valid) {
                     onResultComplete(results)
                 } else {

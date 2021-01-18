@@ -23,7 +23,8 @@ class CurrencyRepository(
         val currencyRatesResponse = apiService.getCurrencyRates(key, currencyKey)
         val currencyRatesResult = currencyRatesResponse.toDomain()
         currencyRatesResult.rates.map {
-            currencyRatesResult.ratesInfo.add(CurrencyRatesInfo(it.key, it.value))
+            val currencyCode = it.key.replace(currencyRatesResult.base, "")
+            currencyRatesResult.ratesInfo.add(CurrencyRatesInfo(currencyCode, it.value))
         }
         emit(currencyRatesResult)
     }

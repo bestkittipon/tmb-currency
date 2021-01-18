@@ -7,13 +7,13 @@ import retrofit2.http.Url
 
 interface CurrencyApiService {
 
-    @GET("currencies/")
-    suspend fun getCurrency(@Query("key") key: String): CurrencyResponse
+    @GET("list")
+    suspend fun getCurrency(@Query("access_key") key: String): CurrencyResponse
 
-    @GET("rates/")
-    suspend fun getCurrencyRates(@Query("key") key: String, @Query("base") currencyKey: String): CurrencyRatesResponse
+    @GET("live")
+    suspend fun getCurrencyRates(@Query("access_key") key: String, @Query("source") currencyKey: String): CurrencyRatesResponse
 
-    @GET("convert/")
+    @GET("convert")
     suspend fun convertCurrency(
         @Query("key") key: String,
         @Query("amount") amount: Double,

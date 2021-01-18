@@ -44,7 +44,7 @@ class ConvertCurrencyViewModel(
         _selectedCurrency.value = selectedCurrencyInfo
         searchJob = launchCoroutine {
             onResultLoading()
-            currencyRatesUseCase(CurrencyRatesRequest("hOwgpdhjjp5U3qW9PHPv9N3edlzizkLPorev", selectedCurrencyInfo.code ?: "")).collect { results ->
+            currencyRatesUseCase(CurrencyRatesRequest("22b335212e7c832f7aa8d843bf836094", selectedCurrencyInfo.code ?: "")).collect { results ->
                 onResultComplete(results)
             }
         }

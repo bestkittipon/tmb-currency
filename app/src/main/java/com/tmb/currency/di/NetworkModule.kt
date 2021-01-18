@@ -13,7 +13,7 @@ val networkModule = module {
 
     single { provideSampleApiService(retrofit = get()) }
 
-    single { provideRetrofit(okHttpClient = get(), url = "https://currencyapi.net/api/v1/") }
+    single { provideRetrofit(okHttpClient = get(), url = "http://api.currencylayer.com/") }
 
     single { provideOkHttpClient() }
 }
