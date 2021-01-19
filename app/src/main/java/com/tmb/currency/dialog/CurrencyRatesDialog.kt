@@ -14,21 +14,22 @@ import com.tmb.currency.model.CurrencyInfoPresentation
 import com.tmb.currency.model.CurrencyRatesInfoPresentation
 import com.tmb.currency.model.CurrencyRatesPresentation
 import com.tmb.currency.viewmodel.CurrencyRatesDialogViewModel
-import com.tmb.domain.model.CurrencyRatesInfo
 
 class CurrencyRatesDialog: DialogFragment() {
 
-    private lateinit var currencyRates: List<CurrencyRatesInfo>
     private lateinit var listener: (CurrencyRatesInfoPresentation) -> Unit
     private lateinit var dialogBinding: DialogCurrencyRatesPickerBinding
 
     val viewModel: CurrencyRatesDialogViewModel by viewModels()
 
     companion object {
+        private const val KEY_CURRENCY_RATES = "currencyRatesPresentation"
+        private const val KEY_CURRENCY_INFO = "currencyInfoPresentation"
+
         fun newInstance(currencyRatesPresentation: CurrencyRatesPresentation, currencyInfoPresentation: CurrencyInfoPresentation) = CurrencyRatesDialog().apply {
             arguments = bundleOf(
-                "currencyRatesPresentation" to currencyRatesPresentation,
-                "currencyInfoPresentation" to currencyInfoPresentation
+                KEY_CURRENCY_RATES to currencyRatesPresentation,
+                KEY_CURRENCY_INFO to currencyInfoPresentation
             )
         }
     }
@@ -48,16 +49,8 @@ class CurrencyRatesDialog: DialogFragment() {
         }
     }
 
-    fun setAccountInfo(currencyRateList: List<CurrencyRatesInfo>) {
-        this.currencyRates = currencyRateList
-    }
-
     fun setOnAccountSelectListener(listener: (CurrencyRatesInfoPresentation) -> Unit) {
         this.listener = listener
-    }
-
-    private fun onAccountSelected(position: Int) {
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,8 +58,8 @@ class CurrencyRatesDialog: DialogFragment() {
         dialogBinding = DialogCurrencyRatesPickerBinding.bind(view)
         dialogBinding.viewModel = viewModel
 
-        arguments?.getParcelable<CurrencyRatesPresentation>("currencyRatesPresentation")?.let { currencyRatesPresentation ->
-            arguments?.getParcelable<CurrencyInfoPresentation>("currencyInfoPresentation")?.let { currencyInfoPresentation ->
+        arguments?.getParcelable<CurrencyRatesPresentation>(KEY_CURRENCY_RATES)?.let { currencyRatesPresentation ->
+            arguments?.getParcelable<CurrencyInfoPresentation>(KEY_CURRENCY_INFO)?.let { currencyInfoPresentation ->
                 viewModel.init(currencyRatesPresentation, currencyInfoPresentation)
             }
         }

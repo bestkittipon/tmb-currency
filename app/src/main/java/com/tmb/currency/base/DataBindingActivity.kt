@@ -23,7 +23,6 @@ internal abstract class DataBindingActivity<Binding : ViewDataBinding, out VM : 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutResId())
         binding.lifecycleOwner = this
-        //subscribeToViewModel(viewModel)
         initialView()
     }
 

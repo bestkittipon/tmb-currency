@@ -22,6 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_API", '"http://api.currencylayer.com/"'
+            buildConfigField "String", "API_KEY", '"22b335212e7c832f7aa8d843bf836094"'
+            buildConfigField "String", "IMAGE_PATH", '"https://currency.morgrowe.com/images/flag-icons-256/{code}.png"'
         }
 
         debug {
@@ -29,6 +33,10 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
             testCoverageEnabled true
+
+            buildConfigField "String", "BASE_API", '"http://api.currencylayer.com/"'
+            buildConfigField "String", "API_KEY", '"22b335212e7c832f7aa8d843bf836094"'
+            buildConfigField "String", "IMAGE_PATH", '"https://currency.morgrowe.com/images/flag-icons-256/{code}.png"'
         }
     }
 
@@ -48,8 +56,6 @@ android {
 }
 
 dependencies {
-    //implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     //Local Libs
     implementation project(':domain')

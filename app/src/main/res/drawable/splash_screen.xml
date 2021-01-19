@@ -6,11 +6,11 @@
 
     <item
         android:drawable="@drawable/ic_logo"
-        android:bottom="160dp"
+        android:bottom="10dp"
         android:gravity="center"
-        android:left="160dp"
-        android:right="160dp"
-        android:top="160dp">
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp">
     </item>
 
 </layer-list>

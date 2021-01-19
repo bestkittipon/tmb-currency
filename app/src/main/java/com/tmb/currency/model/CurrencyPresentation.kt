@@ -1,6 +1,7 @@
 package com.tmb.currency.model
 
 import android.os.Parcelable
+import com.tmb.currency.BuildConfig
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 import kotlin.collections.ArrayList
@@ -16,5 +17,5 @@ data class CurrencyInfoPresentation(
     val code: String? = null,
     val name: String? = null
 ): Parcelable {
-    fun getImageUrl() = "https://currency.morgrowe.com/images/flag-icons-256/${code?.toLowerCase(Locale.ENGLISH)}.png"
+    fun getImageUrl() = BuildConfig.IMAGE_PATH.replace("{code}", code?.toLowerCase(Locale.ENGLISH) ?: "")
 }

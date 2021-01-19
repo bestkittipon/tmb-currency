@@ -46,8 +46,9 @@ internal class MainActivity : DataBindingActivity<ActivityMainBinding, MainViewM
 
         viewModel.error.observe(this, Observer {
             if (it.isNotEmpty()) {
-                MessageDialog.newDialog("Error Request", it)
-                    .show(supportFragmentManager, ConvertCurrencyActivity::javaClass.toString())
+                val dialog = MessageDialog.newDialog(getString(R.string.error_title), it)
+                dialog.isCancelable = false
+                dialog.show(supportFragmentManager, ConvertCurrencyActivity::javaClass.toString())
             }
         })
     }

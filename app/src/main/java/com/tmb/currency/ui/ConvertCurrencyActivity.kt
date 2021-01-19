@@ -23,14 +23,17 @@ internal class ConvertCurrencyActivity : DataBindingActivity<ActivityConvertCurr
 
     override fun getLayoutResId() = R.layout.activity_convert_currency
 
-    private val currencyList by lazy { intent.extras?.getParcelable<CurrencyPresentation>("currencyList") }
-    private val selectedCurrencyInfo by lazy { intent.extras?.getParcelable<CurrencyInfoPresentation>("selectedCurrencyInfo") }
+    private val currencyList by lazy { intent.extras?.getParcelable<CurrencyPresentation>(KEY_CURRENCY_LIST) }
+    private val selectedCurrencyInfo by lazy { intent.extras?.getParcelable<CurrencyInfoPresentation>(KEY_SELECTED_CURRENCY_INFO) }
 
     companion object {
+        private const val KEY_CURRENCY_LIST = "currencyList"
+        private const val KEY_SELECTED_CURRENCY_INFO = "selectedCurrencyInfo"
+
         fun newIntent(context: Context, currency: CurrencyPresentation, selectedCurrencyInfo: CurrencyInfoPresentation): Intent {
             return Intent(context, ConvertCurrencyActivity::class.java).also {
-                it.putExtra("currencyList", currency)
-                it.putExtra("selectedCurrencyInfo", selectedCurrencyInfo)
+                it.putExtra(KEY_CURRENCY_LIST, currency)
+                it.putExtra(KEY_SELECTED_CURRENCY_INFO, selectedCurrencyInfo)
             }
         }
     }
@@ -65,8 +68,10 @@ internal class ConvertCurrencyActivity : DataBindingActivity<ActivityConvertCurr
 
         viewModel.error.observe(this, Observer {
             if (it.isNotEmpty()) {
-                MessageDialog.newDialog("Error Request", it)
-                    .show(supportFragmentManager, ConvertCurrencyActivity::javaClass.toString())
+                val dialog = MessageDialog.newDialog(getString(R.string.error_title), it)
+                dialog.setCallBackListener { finish() }
+                dialog.isCancelable = false
+                dialog.show(supportFragmentManager, ConvertCurrencyActivity::javaClass.toString())
             }
         })
     }

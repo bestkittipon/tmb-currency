@@ -11,6 +11,4 @@ data class Currency (
 data class CurrencyInfo(
     val code: String? = null,
     val name: String? = null
-) {
-    fun getImageUrl() = "https://currency.morgrowe.com/images/flag-icons-256/${code?.toLowerCase(Locale.ENGLISH)}.png"
-}
+)

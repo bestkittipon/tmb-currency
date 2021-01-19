@@ -1,5 +1,6 @@
 package com.tmb.currency.di
 
+import com.tmb.currency.BuildConfig
 import com.tmb.data_remote.api.CurrencyApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,7 +14,7 @@ val networkModule = module {
 
     single { provideSampleApiService(retrofit = get()) }
 
-    single { provideRetrofit(okHttpClient = get(), url = "http://api.currencylayer.com/") }
+    single { provideRetrofit(okHttpClient = get(), url = BuildConfig.BASE_API) }
 
     single { provideOkHttpClient() }
 }

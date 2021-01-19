@@ -19,6 +19,12 @@
             android:background="@color/colorPrimaryDark"
             tools:context=".ui.MainActivity">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/curves"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <ProgressBar
                 android:id="@+id/search_results_progress_bar"
                 android:layout_width="80dp"
@@ -31,42 +37,19 @@
 
             <ImageView
                 android:id="@+id/img_logo"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_logo"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="16dp"
-                android:text="Live Tv"
-                android:textSize="18sp"
-                android:textColor="@color/colorWhite"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/img_logo"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="26dp"
-                android:text="Streaming"
-                android:textSize="18sp"
-                android:textColor="@color/colorWhite"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img_logo"/>
+                android:src="@drawable/ic_exchange_foreground"/>
 
             <TextView
                 android:id="@+id/txt_say_hello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Good Morning, User001"
+                android:text="@string/say_hello"
                 android:textSize="24sp"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
@@ -78,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="We Wish you have a good day"
+                android:text="@string/select_currency"
                 android:textSize="20sp"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintTop_toBottomOf="@id/txt_say_hello"
@@ -90,7 +73,7 @@
                 android:layout_height="32dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/colorWhite"
-                android:hint="Search currency .."
+                android:hint="@string/text_hint_search"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:textSize="16sp"

@@ -2,6 +2,7 @@ package com.tmb.currency.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tmb.currency.BuildConfig
 import com.tmb.currency.R
 import com.tmb.currency.adapter.CurrencyAdapter
 import com.tmb.domain.usecases.CurrencyBaseUseCase
@@ -38,10 +39,9 @@ class MainViewModel(
     }
 
     fun getCurrency() {
-        //EspressoIdlingResource.increment()
         searchJob = launchCoroutine {
             onResultLoading()
-            currencyUseCase("22b335212e7c832f7aa8d843bf836094").collect { results ->
+            currencyUseCase(BuildConfig.API_KEY).collect { results ->
                 if (results.valid) {
                     onResultComplete(results)
                 } else {
@@ -68,7 +68,6 @@ class MainViewModel(
     }
 
     private fun onResultComplete(currency: Currency) {
-        //EspressoIdlingResource.increment()
         _currencyResult.postValue(currency)
         adapter.setData(currency.info)
         adapter.notifyDataSetChanged()
@@ -76,12 +75,10 @@ class MainViewModel(
     }
 
     private fun onResultLoading() {
-        //EspressoIdlingResource.increment()
         showLoading()
     }
 
     private fun onResultError(message: String?) {
-        //EspressoIdlingResource.increment()
         error.postValue(message)
         dismissLoading()
     }

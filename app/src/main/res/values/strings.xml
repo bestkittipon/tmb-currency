@@ -2,8 +2,13 @@
     <string name="app_name">Currency</string>
 
     <!-- Error Strings -->
+    <string name="error_title">Error Request</string>
     <string name="error_check_internet_connection">Check Internet Connection</string>
     <string name="error_oops_error_occured">Oops!! An Error Occurred</string>
     <string name="error_loading_character_details">Couldn\'t load character details</string>
     <string name="back_to_home_dashboard_content_desc">Back to home dashboard</string>
+
+    <string name="say_hello">Good Morning</string>
+    <string name="select_currency">Please select currency to convert</string>
+    <string name="text_hint_search">Search currency ..</string>
 </resources>

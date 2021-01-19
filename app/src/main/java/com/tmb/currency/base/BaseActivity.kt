@@ -1,6 +1,5 @@
 package com.tmb.currency.base
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -8,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.tmb.currency.commons.NetworkUtils
 import com.tmb.currency.commons.versionFrom
-
 
 internal open class BaseActivity : AppCompatActivity() {
 

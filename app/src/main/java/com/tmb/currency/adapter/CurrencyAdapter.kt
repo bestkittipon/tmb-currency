@@ -11,6 +11,7 @@ import com.tmb.currency.R
 import com.tmb.currency.base.BaseAdapter
 import com.tmb.currency.base.BaseViewHolder
 import com.tmb.currency.databinding.ItemMediumContentBinding
+import com.tmb.currency.mappers.toPresentation
 import com.tmb.currency.viewmodel.MainViewModel
 import com.tmb.domain.model.CurrencyInfo
 
@@ -28,17 +29,6 @@ class CurrencyAdapter(layoutId: Int, viewModel: MainViewModel): BaseAdapter<Main
             holder.bindView(it, viewModel, position)
         }
     }
-
-    /*fun onRemoveDevice(position: Int, viewModel: CurrencyViewHolder) {
-        (getData() as? ArrayList<Device>)?.apply {
-            removeAt(position)
-        }?.also {
-            setData(it.toList())
-            updateViewModel(viewModel)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(0, itemCount)
-        }
-    }*/
 }
 
 class CurrencyViewHolder(private val viewBinding: ItemMediumContentBinding): BaseViewHolder<ItemMediumContentBinding, CurrencyInfo>(viewBinding) {
@@ -54,7 +44,7 @@ class CurrencyViewHolder(private val viewBinding: ItemMediumContentBinding): Bas
 
         Glide.with(viewBinding.root)
             .setDefaultRequestOptions(requestOptions)
-            .load(data.getImageUrl())
+            .load(data.toPresentation().getImageUrl())
             .into(viewBinding.imgLogo)
     }
 }

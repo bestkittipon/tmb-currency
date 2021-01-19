@@ -1,19 +1,15 @@
 package com.tmb.currency.viewmodel
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tmb.currency.R
-import com.tmb.currency.adapter.CurrencyRatesAdapter
+import com.tmb.currency.BuildConfig
 import com.tmb.currency.mappers.toPresentation
 import com.tmb.currency.model.CurrencyInfoPresentation
 import com.tmb.currency.model.CurrencyPresentation
 import com.tmb.currency.model.CurrencyRatesInfoPresentation
 import com.tmb.currency.model.CurrencyRatesPresentation
-import com.tmb.domain.model.CurrencyInfo
 import com.tmb.domain.model.CurrencyRates
-import com.tmb.domain.model.CurrencyRatesInfo
 import com.tmb.domain.model.CurrencyRatesRequest
 import com.tmb.domain.usecases.CurrencyRatesBaseUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -64,8 +60,7 @@ class ConvertCurrencyViewModel(
         _selectedCurrency.value = selectedCurrencyInfo
         searchJob = launchCoroutine {
             onResultLoading()
-            currencyRatesUseCase(CurrencyRatesRequest("22b335212e7c832f7aa8d843bf836094", selectedCurrencyInfo.code ?: "")).collect { results ->
-                Log.d("best_test" , results.toString())
+            currencyRatesUseCase(CurrencyRatesRequest(BuildConfig.API_KEY, selectedCurrencyInfo.code ?: "")).collect { results ->
                 onResultComplete(results)
             }
         }
