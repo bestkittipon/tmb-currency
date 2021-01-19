@@ -1,5 +1,6 @@
 package com.tmb.currency.base
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -7,14 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.tmb.currency.commons.NetworkUtils
 import com.tmb.currency.commons.versionFrom
-import com.tmb.currency.dialog.LoadingOverlayDialog
-import com.tmb.currency.viewmodel.BaseViewModel
+
 
 internal open class BaseActivity : AppCompatActivity() {
-
-    internal val loadingOverlay: LoadingOverlayDialog by lazy {
-        LoadingOverlayDialog(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,22 +29,5 @@ internal open class BaseActivity : AppCompatActivity() {
             .observe(this, Observer { isConnected ->
                 block(isConnected)
             })
-    }
-
-    protected fun subscribeToViewModel(viewModel: BaseViewModel) {
-        viewModel.loadingState.observe(this, Observer {
-            when (it.isLoading) {
-                true -> showLoading(*it.labels.toTypedArray())
-                false -> dismissLoading()
-            }
-        })
-    }
-
-    fun showLoading(vararg labels: String) {
-        loadingOverlay.show(labels.toList())
-    }
-
-    fun dismissLoading() {
-        loadingOverlay.dismiss()
     }
 }

@@ -1,5 +1,6 @@
 package com.tmb.currency.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -64,6 +65,7 @@ class ConvertCurrencyViewModel(
         searchJob = launchCoroutine {
             onResultLoading()
             currencyRatesUseCase(CurrencyRatesRequest("22b335212e7c832f7aa8d843bf836094", selectedCurrencyInfo.code ?: "")).collect { results ->
+                Log.d("best_test" , results.toString())
                 onResultComplete(results)
             }
         }
@@ -89,12 +91,18 @@ class ConvertCurrencyViewModel(
     }
 
     private fun onResultComplete(currencyRate: CurrencyRates) {
-        _currencyList.value?.currencies?.let { currencyMap ->
-            currencyRate.ratesInfo.map { it.name = currencyMap[it.code] }
+        if(currencyRate.valid) {
+            _currencyList.value?.currencies?.let { currencyMap ->
+                currencyRate.ratesInfo.map { it.name = currencyMap[it.code] }
+            }
+            _currencyRateList.value = currencyRate.toPresentation()
+            _selectedCurrencyRates.value = currencyRate.ratesInfo[0].toPresentation()
+            dismissLoading()
+        } else {
+            val errorMessage = "${currencyRate.error?.code} : ${currencyRate.error?.message}"
+            onResultError(errorMessage)
         }
-        _currencyRateList.value = currencyRate.toPresentation()
-        _selectedCurrencyRates.value = currencyRate.ratesInfo[0].toPresentation()
-        dismissLoading()
+
     }
 
     private fun onResultLoading() {
@@ -104,6 +112,7 @@ class ConvertCurrencyViewModel(
 
     private fun onResultError(message: String?) {
         //EspressoIdlingResource.increment()
+        error.postValue(message)
         dismissLoading()
     }
 }

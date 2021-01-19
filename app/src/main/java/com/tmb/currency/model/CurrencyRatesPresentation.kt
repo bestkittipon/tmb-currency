@@ -7,9 +7,9 @@ import java.util.*
 
 @Parcelize
 data class CurrencyRatesPresentation(
-    val updated: Long,
-    val base: String,
-    val rates: Map<String, Double>,
+    val updated: Long?,
+    val base: String?,
+    val rates: Map<String, Double>?,
     val ratesInfo: List<CurrencyRatesInfoPresentation> = arrayListOf()
 ): BaseModelPresentation(), Parcelable
 

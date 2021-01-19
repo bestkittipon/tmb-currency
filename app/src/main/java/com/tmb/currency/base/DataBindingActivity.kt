@@ -19,19 +19,12 @@ internal abstract class DataBindingActivity<Binding : ViewDataBinding, out VM : 
 
     protected abstract fun initialView()
 
-    protected abstract fun observeViewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutResId())
         binding.lifecycleOwner = this
-        subscribeToViewModel(viewModel)
+        //subscribeToViewModel(viewModel)
         initialView()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        observeViewModel()
     }
 
 }

@@ -15,6 +15,10 @@ abstract class BaseViewModel : ViewModel() {
         LoadingState(false)
     }
 
+    val error = MutableLiveData<String>().apply {
+        value = ""
+    }
+
     abstract val coroutineExceptionHandler: CoroutineExceptionHandler
 
     protected fun launchCoroutine(block: suspend CoroutineScope.() -> Unit): Job {

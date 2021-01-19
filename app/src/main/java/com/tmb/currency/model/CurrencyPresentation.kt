@@ -7,7 +7,7 @@ import kotlin.collections.ArrayList
 
 @Parcelize
 data class CurrencyPresentation (
-    val currencies: Map<String, String>,
+    val currencies: Map<String, String>?,
     val info: List<CurrencyInfoPresentation> = arrayListOf()
 ): BaseModelPresentation(), Parcelable
 

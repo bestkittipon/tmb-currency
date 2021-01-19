@@ -1,6 +1,5 @@
-package com.tmb.currency.ui
+package com.tmb.currency.dialog
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.tmb.currency.model.CurrencyRatesInfoPresentation
 import com.tmb.currency.model.CurrencyRatesPresentation
 import com.tmb.currency.viewmodel.CurrencyRatesDialogViewModel
 import com.tmb.domain.model.CurrencyRatesInfo
-
 
 class CurrencyRatesDialog: DialogFragment() {
 

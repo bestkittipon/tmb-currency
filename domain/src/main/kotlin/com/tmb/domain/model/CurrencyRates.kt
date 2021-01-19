@@ -4,9 +4,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 data class CurrencyRates (
-    val updated: Long,
-    val base: String,
-    val rates: Map<String, Double>,
+    val updated: Long?,
+    val base: String?,
+    val rates: Map<String, Double>?,
     val ratesInfo: ArrayList<CurrencyRatesInfo> = arrayListOf()
 ): BaseModel()
 

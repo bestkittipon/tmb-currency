@@ -13,7 +13,7 @@ class CurrencyRepository(
     override suspend fun getCurrency(key: String): Flow<Currency> = flow {
         val currencyResponse = apiService.getCurrency(key)
         val currencyResult = currencyResponse.toDomain()
-        currencyResult.currencies.map {
+        currencyResult.currencies?.map {
             currencyResult.info.add(CurrencyInfo(it.key, it.value))
         }
         emit(currencyResult)
@@ -22,8 +22,8 @@ class CurrencyRepository(
     override suspend fun getRatesCurrency(key: String, currencyKey: String): Flow<CurrencyRates>  = flow {
         val currencyRatesResponse = apiService.getCurrencyRates(key, currencyKey)
         val currencyRatesResult = currencyRatesResponse.toDomain()
-        currencyRatesResult.rates.map {
-            val currencyCode = it.key.replace(currencyRatesResult.base, "")
+        currencyRatesResult.rates?.map {
+            val currencyCode = it.key.replace(currencyRatesResult.base ?: "", "")
             currencyRatesResult.ratesInfo.add(CurrencyRatesInfo(currencyCode, it.value))
         }
         emit(currencyRatesResult)

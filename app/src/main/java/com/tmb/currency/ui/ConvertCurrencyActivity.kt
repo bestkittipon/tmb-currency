@@ -7,11 +7,14 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tmb.currency.R
 import com.tmb.currency.base.DataBindingActivity
 import com.tmb.currency.databinding.ActivityConvertCurrencyBinding
+import com.tmb.currency.dialog.CurrencyRatesDialog
+import com.tmb.currency.dialog.MessageDialog
 import com.tmb.currency.model.CurrencyInfoPresentation
 import com.tmb.currency.model.CurrencyPresentation
 import com.tmb.currency.viewmodel.ConvertCurrencyViewModel
@@ -59,10 +62,13 @@ internal class ConvertCurrencyActivity : DataBindingActivity<ActivityConvertCurr
                 .load(selectedCurrencyInfo!!.getImageUrl())
                 .into(binding.imgLogo)
         }
-    }
 
-    override fun observeViewModel() {
-
+        viewModel.error.observe(this, Observer {
+            if (it.isNotEmpty()) {
+                MessageDialog.newDialog("Error Request", it)
+                    .show(supportFragmentManager, ConvertCurrencyActivity::javaClass.toString())
+            }
+        })
     }
 
     fun onCloseClicked(view: View) {

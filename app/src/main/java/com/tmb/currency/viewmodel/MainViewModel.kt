@@ -45,7 +45,8 @@ class MainViewModel(
                 if (results.valid) {
                     onResultComplete(results)
                 } else {
-                    onResultError(results.error?.message)
+                    val errorMessage = "${results.error?.code} : ${results.error?.message}"
+                    onResultError(errorMessage)
                 }
             }
         }
@@ -81,6 +82,7 @@ class MainViewModel(
 
     private fun onResultError(message: String?) {
         //EspressoIdlingResource.increment()
+        error.postValue(message)
         dismissLoading()
     }
 }
