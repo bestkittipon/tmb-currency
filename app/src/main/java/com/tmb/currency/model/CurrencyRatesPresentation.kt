@@ -1,8 +1,10 @@
 package com.tmb.currency.model
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.tmb.currency.BuildConfig
 import kotlinx.android.parcel.Parcelize
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -12,7 +14,20 @@ data class CurrencyRatesPresentation(
     val base: String?,
     val rates: Map<String, Double>?,
     val ratesInfo: List<CurrencyRatesInfoPresentation> = arrayListOf()
-): BaseModelPresentation(), Parcelable
+): BaseModelPresentation(), Parcelable {
+
+    @SuppressLint("SimpleDateFormat")
+    fun getAsOfDateTime() = try {
+        updated?.let {
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
+            val netDate = Date(updated * 1000)
+            sdf.format(netDate)
+        } ?: ""
+
+    } catch (e: Exception) {
+        ""
+    }
+}
 
 
 @Parcelize

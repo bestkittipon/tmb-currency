@@ -8,7 +8,13 @@
     <string name="error_loading_character_details">Couldn\'t load character details</string>
     <string name="back_to_home_dashboard_content_desc">Back to home dashboard</string>
 
+    <string name="text_convert_currency">Convert Currency</string>
     <string name="say_hello">Good Morning</string>
     <string name="select_currency">Please select currency to convert</string>
     <string name="text_hint_search">Search currency ..</string>
+    <string name="text_data_as_of">Data as of %s</string>
+    <string name="text_amount">Amount</string>
+    <string name="text_amount_to_convert">Amount to convert</string>
+    <string name="text_convert">Convert</string>
+    <string name="text_clear">Clear</string>
 </resources>

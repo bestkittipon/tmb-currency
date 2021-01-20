@@ -33,7 +33,7 @@
                 android:id="@+id/txt_say_hello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Convert Currency"
+                android:text="@string/text_convert_currency"
                 android:textSize="24sp"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
@@ -181,9 +181,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{@string/text_data_as_of(viewModel.currencyRateList.getAsOfDateTime)}"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            tools:text="@string/text_data_as_of"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center_vertical"
-            android:text="Amount"
+            android:text="@string/text_amount"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -221,7 +231,7 @@
                 android:layout_marginEnd="4dp"
                 android:background="@drawable/layout_corner"
                 android:backgroundTint="@color/colorBlue"
-                android:text="Convert"
+                android:text="@string/text_convert"
                 android:onClick="@{viewModel.onClickConvert}"/>
 
             <Button
@@ -231,7 +241,7 @@
                 android:layout_marginStart="4dp"
                 android:background="@drawable/layout_corner"
                 android:backgroundTint="@color/colorYellow"
-                android:text="Clear"
+                android:text="@string/text_clear"
                 android:onClick="@{viewModel.onClickClear}"/>
 
         </LinearLayout>
@@ -241,7 +251,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center_vertical"
-            android:text="Amount to convert"
+            android:text="@string/text_amount_to_convert"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:textStyle="bold"
