@@ -1,6 +1,5 @@
 package com.tmb.domain.model
 
-import java.util.*
 import kotlin.collections.ArrayList
 
 data class Currency (

@@ -6,9 +6,6 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 import java.net.HttpURLConnection
 
-/**
- * Handles Requests from mock web server
- */
 internal class CurrencyRequestDispatcher : Dispatcher() {
 
     override fun dispatch(request: RecordedRequest): MockResponse {

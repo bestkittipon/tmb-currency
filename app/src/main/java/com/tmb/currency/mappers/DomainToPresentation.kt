@@ -4,6 +4,7 @@ import com.tmb.currency.model.CurrencyInfoPresentation
 import com.tmb.currency.model.CurrencyPresentation
 import com.tmb.currency.model.CurrencyRatesInfoPresentation
 import com.tmb.currency.model.CurrencyRatesPresentation
+import com.tmb.currency.model.Error
 import com.tmb.domain.model.Currency
 import com.tmb.domain.model.CurrencyInfo
 import com.tmb.domain.model.CurrencyRates
@@ -17,7 +18,12 @@ internal fun Currency.toPresentation(): CurrencyPresentation {
     return CurrencyPresentation(
         this.currencies,
         this.info.map { it.toPresentation() }
-    )
+    ).apply {
+        valid = this@toPresentation.valid
+        error = Error()
+        error?.code = this@toPresentation.error?.code
+        error?.message = this@toPresentation.error?.message
+    }
 }
 
 internal fun CurrencyRatesInfo.toPresentation(): CurrencyRatesInfoPresentation {
@@ -30,5 +36,10 @@ internal fun CurrencyRates.toPresentation(): CurrencyRatesPresentation {
         this.base,
         this.rates,
         this.ratesInfo.map { it.toPresentation() }
-    )
+    ).apply {
+        valid = this@toPresentation.valid
+        error = Error()
+        error?.code = this@toPresentation.error?.code
+        error?.message = this@toPresentation.error?.message
+    }
 }
