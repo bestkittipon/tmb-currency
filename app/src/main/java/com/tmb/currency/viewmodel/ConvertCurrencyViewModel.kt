@@ -75,7 +75,7 @@ class ConvertCurrencyViewModel(
             if (convertAmount.value?.isNotEmpty() == true) {
                 val convertAmount = convertAmount.value?.toDouble() ?: 0.0
                 val total = convertAmount * currencyRate
-                _convertResult.value = "$total ${_selectedCurrency.value?.code}"
+                _convertResult.value = "$total ${_selectedCurrencyRates.value?.code}"
             }
         }
     }
