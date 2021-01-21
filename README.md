@@ -1,4 +1,4 @@
-# tmb-currency
+# TMB-Currency
 
 ## Technology and Dependencie  
 - Kotlin
